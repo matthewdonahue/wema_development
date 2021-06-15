@@ -1,5 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+ 
+
+class UserInterest(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+    normalized_name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class UserPersona(models.Model):
@@ -23,3 +31,9 @@ class UserProfile(models.Model):
     persona = models.ForeignKey(
         UserPersona, on_delete=models.SET_NULL, blank=True, null=True
     )
+    interests = models.ManyToManyField(UserInterest, blank=True)
+
+    # Links (TODO: Validate Input)
+    linkedin_url = models.URLField(max_length=200, blank=True, null=True)
+    twitter_url = models.URLField(max_length=200, blank=True, null=True)
+    youtube_url = models.URLField(max_length=200, blank=True, null=True)

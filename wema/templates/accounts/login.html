@@ -4,9 +4,19 @@
 
 {% block content %}
 <h1>Login</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <form method="post">
+        {% csrf_token %}
+            <div class="control-group">
+                    {{ form.as_p }}
+                    {{ form.label_tag }}
+                </div>
+            </div>
+    </div>
+</div>
     <button type="submit">Login</button>
 </form>
 {% endblock %}
